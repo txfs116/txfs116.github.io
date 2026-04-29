@@ -33,7 +33,6 @@
             cursor: default;
         }
 
-        /* 背景浮动爱心 */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -72,7 +71,6 @@
             }
         }
 
-        /* 遮罩层 */
         .overlay {
             position: fixed;
             top: 0;
@@ -88,15 +86,10 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* 弹窗 */
         .modal {
             position: relative;
             width: min(460px, 92vw);
@@ -113,18 +106,9 @@
         }
 
         @keyframes popIn {
-            0% {
-                transform: scale(0.7) translateY(30px);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.04) translateY(-5px);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-            }
+            0% { transform: scale(0.7) translateY(30px); opacity: 0; }
+            60% { transform: scale(1.04) translateY(-5px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
         .modal.shake {
@@ -132,31 +116,15 @@
         }
 
         @keyframes shakeModal {
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-            15% {
-                transform: translateX(-8px);
-            }
-            30% {
-                transform: translateX(8px);
-            }
-            45% {
-                transform: translateX(-6px);
-            }
-            60% {
-                transform: translateX(5px);
-            }
-            75% {
-                transform: translateX(-3px);
-            }
-            90% {
-                transform: translateX(2px);
-            }
+            0%,100% { transform: translateX(0); }
+            15% { transform: translateX(-8px); }
+            30% { transform: translateX(8px); }
+            45% { transform: translateX(-6px); }
+            60% { transform: translateX(5px); }
+            75% { transform: translateX(-3px); }
+            90% { transform: translateX(2px); }
         }
 
-        /* 标题图标 */
         .modal-icon {
             font-size: 52px;
             margin-bottom: 8px;
@@ -165,25 +133,13 @@
         }
 
         @keyframes bounceIcon {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-14px);
-            }
-            50% {
-                transform: translateY(0);
-            }
-            70% {
-                transform: translateY(-8px);
-            }
-            85% {
-                transform: translateY(0);
-            }
+            0%,100% { transform: translateY(0); }
+            30% { transform: translateY(-14px); }
+            50% { transform: translateY(0); }
+            70% { transform: translateY(-8px); }
+            85% { transform: translateY(0); }
         }
 
-        /* 问题文字 */
         .modal-question {
             font-size: 1.25rem;
             font-weight: 700;
@@ -200,7 +156,6 @@
             font-weight: 400;
         }
 
-        /* 按钮容器 - 使用relative定位，给absolute按钮提供参考 */
         .btn-area {
             position: relative;
             width: 100%;
@@ -208,7 +163,6 @@
             margin-top: 10px;
         }
 
-        /* 按钮通用样式 */
         .btn {
             position: absolute;
             padding: 13px 28px;
@@ -227,11 +181,8 @@
             word-break: keep-all;
         }
 
-        .btn:active {
-            transform: scale(0.92);
-        }
+        .btn:active { transform: scale(0.92); }
 
-        /* Yes按钮 - 固定在右下区域 */
         .btn-yes {
             background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%);
             color: #fff;
@@ -255,16 +206,10 @@
         }
 
         @keyframes pulseYes {
-            0%,
-            100% {
-                box-shadow: 0 6px 22px rgba(255, 64, 129, 0.4);
-            }
-            50% {
-                box-shadow: 0 10px 34px rgba(255, 64, 129, 0.7), 0 0 0 10px rgba(255, 107, 157, 0.1);
-            }
+            0%,100% { box-shadow: 0 6px 22px rgba(255, 64, 129, 0.4); }
+            50% { box-shadow: 0 10px 34px rgba(255, 64, 129, 0.7), 0 0 0 10px rgba(255, 107, 157, 0.1); }
         }
 
-        /* No按钮 - 会逃跑 */
         .btn-no {
             background: #f5f5f5;
             color: #888;
@@ -275,7 +220,6 @@
             border: 2px solid #e0e0e0;
             cursor: pointer;
             min-width: 120px;
-            /* 为中文预留宽度 */;
         }
 
         .btn-no:hover {
@@ -288,18 +232,11 @@
         }
 
         @keyframes fleePop {
-            0% {
-                transform: scale(1);
-            }
-            40% {
-                transform: scale(0.75);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            40% { transform: scale(0.75); }
+            100% { transform: scale(1); }
         }
 
-        /* 爱心飘落容器 */
         .hearts-burst {
             position: fixed;
             top: 0;
@@ -318,21 +255,11 @@
         }
 
         @keyframes burstFall {
-            0% {
-                transform: translateY(0) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            30% {
-                opacity: 1;
-                transform: translateY(-60px) rotate(25deg) scale(1.4);
-            }
-            100% {
-                transform: translateY(105vh) rotate(180deg) scale(0.3);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+            30% { opacity: 1; transform: translateY(-60px) rotate(25deg) scale(1.4); }
+            100% { transform: translateY(105vh) rotate(180deg) scale(0.3); opacity: 0; }
         }
 
-        /* 结果弹窗内容 */
         .result-content {
             display: flex;
             flex-direction: column;
@@ -343,14 +270,8 @@
         }
 
         @keyframes resultFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .result-emoji {
@@ -359,18 +280,10 @@
         }
 
         @keyframes resultBounce {
-            0% {
-                transform: scale(0);
-            }
-            50% {
-                transform: scale(1.25);
-            }
-            70% {
-                transform: scale(0.9);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(0); }
+            50% { transform: scale(1.25); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
         }
 
         .result-text {
@@ -410,76 +323,44 @@
             transform: scale(0.93);
         }
 
-        /* 响应式调整 */
         @media (max-width: 480px) {
             .modal {
                 padding: 24px 16px 20px;
                 border-radius: 20px;
                 min-height: 290px;
             }
-            .modal-question {
-                font-size: 1.05rem;
-            }
-            .modal-icon {
-                font-size: 40px;
-            }
+            .modal-question { font-size: 1.05rem; }
+            .modal-icon { font-size: 40px; }
             .btn {
                 padding: 11px 20px;
                 font-size: 0.9rem;
                 min-width: 80px;
             }
-            .btn-area {
-                height: 160px;
-            }
-            .btn-yes {
-                bottom: 16px;
-                right: 24px;
-            }
-            .btn-no {
-                bottom: auto;
-                left: 24px;
-                min-width: 100px;
-            }
-            .result-text {
-                font-size: 1.3rem;
-            }
-            .result-emoji {
-                font-size: 50px;
-            }
+            .btn-area { height: 160px; }
+            .btn-yes { bottom: 16px; right: 24px; }
+            .btn-no { bottom: auto; left: 24px; min-width: 100px; }
+            .result-text { font-size: 1.3rem; }
+            .result-emoji { font-size: 50px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- 背景浮动爱心 -->
     <div class="floating-hearts" id="floatingHearts"></div>
-
-    <!-- 遮罩层 -->
     <div class="overlay" id="overlay">
-        <!-- 弹窗 -->
         <div class="modal" id="modal">
-            <!-- 图标 -->
             <div class="modal-icon">🗳️</div>
-            <!-- 问题 -->
             <p class="modal-question">宁芙奖投囚徒好不好？</p>
             <p class="modal-subtitle">请做出你的选择~</p>
-
-            <!-- 按钮区域 -->
             <div class="btn-area" id="btnArea">
-                <!-- Yes按钮 - 固定 -->
                 <button class="btn btn-yes" id="btnYes">✅ Yes</button>
-                <!-- No按钮 - 会逃跑且文字会变 -->
                 <button class="btn btn-no" id="btnNo">❌ No</button>
             </div>
         </div>
     </div>
-
-    <!-- 爱心爆发容器 -->
     <div class="hearts-burst" id="heartsBurst"></div>
 
     <script>
         (function() {
-            // ===== DOM元素 =====
             const overlay = document.getElementById('overlay');
             const modal = document.getElementById('modal');
             const btnArea = document.getElementById('btnArea');
@@ -488,20 +369,17 @@
             const heartsBurst = document.getElementById('heartsBurst');
             const floatingHearts = document.getElementById('floatingHearts');
 
-            // ===== 状态 =====
             let noClickAttempts = 0;
             let isResultShown = false;
             let noBtnMoving = false;
 
-            // ===== ⚡ 修改后的 No 按钮文字序列 =====
             const noTexts = [
-                '❌ No',                  // 0: 初始状态
-                '你不想投我吗？😢',       // 1: 点第1次后
-                '求求你了，投我吧🥺',     // 2: 点第2次后
-                '再不投腰不想要了😭'      // 3: 点第3次后（之后保持不变）
+                '❌ No',
+                '你不想投我吗？😢',
+                '求求你了，投我吧🥺',
+                '再不投腰不想要了😭'
             ];
 
-            // ===== 初始化背景浮动爱心 =====
             function createFloatingHearts() {
                 const heartEmojis = ['💕', '💖', '💗', '💝', '💘', '🩷', '🌸', '💐', '✨', '💫', '🦋', '💞'];
                 const fragment = document.createDocumentFragment();
@@ -519,13 +397,11 @@
             }
             createFloatingHearts();
 
-            // ===== 获取弹窗边界（相对于btnArea） =====
             function getModalBounds() {
                 const areaRect = btnArea.getBoundingClientRect();
                 const btnNoRect = btnNo.getBoundingClientRect();
                 const btnYesRect = btnYes.getBoundingClientRect();
 
-                // No按钮在btnArea内的活动范围
                 const paddingX = 4;
                 const paddingY = 4;
                 const minLeft = paddingX;
@@ -533,21 +409,14 @@
                 const minTop = paddingY;
                 const maxTop = areaRect.height - btnNoRect.height - paddingY;
 
-                // Yes按钮在btnArea内的位置（转换为相对于btnArea的坐标）
                 const yesLeft = btnYesRect.left - areaRect.left;
                 const yesTop = btnYesRect.top - areaRect.top;
                 const yesRight = yesLeft + btnYesRect.width;
                 const yesBottom = yesTop + btnYesRect.height;
 
                 return {
-                    minLeft,
-                    maxLeft,
-                    minTop,
-                    maxTop,
-                    yesLeft,
-                    yesTop,
-                    yesRight,
-                    yesBottom,
+                    minLeft,maxLeft,minTop,maxTop,
+                    yesLeft,yesTop,yesRight,yesBottom,
                     btnNoWidth: btnNoRect.width,
                     btnNoHeight: btnNoRect.height,
                     areaWidth: areaRect.width,
@@ -555,9 +424,7 @@
                 };
             }
 
-            // ===== 检查两个矩形是否重叠 =====
             function isOverlapping(ax, ay, aw, ah, bx, by, bw, bh) {
-                // 添加一些margin避免太近
                 const margin = 20;
                 return !(
                     ax + aw + margin < bx ||
@@ -567,10 +434,8 @@
                 );
             }
 
-            // ===== 移动No按钮到随机位置 =====
             function moveNoButton() {
-                if (isResultShown) return;
-                if (noBtnMoving) return;
+                if (isResultShown || noBtnMoving) return;
                 noBtnMoving = true;
 
                 const bounds = getModalBounds();
@@ -585,23 +450,17 @@
                 while (attempts < maxAttempts) {
                     newLeft = bounds.minLeft + Math.random() * (bounds.maxLeft - bounds.minLeft);
                     newTop = bounds.minTop + Math.random() * (bounds.maxTop - bounds.minTop);
-
-                    // 检查是否与Yes按钮重叠
-                    if (!isOverlapping(
-                            newLeft, newTop, bw, bh,
-                            bounds.yesLeft, bounds.yesTop,
-                            bounds.yesRight - bounds.yesLeft,
-                            bounds.yesBottom - bounds.yesTop
-                        )) {
+                    if (!isOverlapping(newLeft,newTop,bw,bh,
+                        bounds.yesLeft,bounds.yesTop,
+                        bounds.yesRight-bounds.yesLeft,
+                        bounds.yesBottom-bounds.yesTop)) {
                         validPosition = true;
                         break;
                     }
                     attempts++;
                 }
 
-                // 如果实在找不到不重叠的位置，就随机放一个（远离Yes）
                 if (!validPosition) {
-                    // 放到Yes按钮对面
                     if (bounds.yesLeft > bounds.areaWidth / 2) {
                         newLeft = bounds.minLeft + Math.random() * 40;
                     } else {
@@ -612,23 +471,18 @@
                     newTop = Math.max(bounds.minTop, Math.min(bounds.maxTop, newTop));
                 }
 
-                // ⚡ 更新No按钮文字：使用修改后的序列
                 noClickAttempts++;
                 const textIndex = Math.min(noClickAttempts, noTexts.length - 1);
                 btnNo.textContent = noTexts[textIndex];
 
-                // 移动按钮
                 btnNo.style.left = newLeft + 'px';
                 btnNo.style.top = newTop + 'px';
-                // 清除bottom，使用top定位
                 btnNo.style.bottom = 'auto';
 
-                // 添加逃跑动画
                 btnNo.classList.remove('fleeing');
                 void btnNo.offsetWidth;
                 btnNo.classList.add('fleeing');
 
-                // 弹窗微微晃动（稍微频繁一点，增强反馈）
                 if (noClickAttempts % 2 === 1 && noClickAttempts > 1) {
                     modal.classList.remove('shake');
                     void modal.offsetWidth;
@@ -636,12 +490,10 @@
                     setTimeout(() => modal.classList.remove('shake'), 450);
                 }
 
-                // 短暂锁定防止连续触发
                 setTimeout(() => {
                     noBtnMoving = false;
                 }, 100);
 
-                // 如果尝试次数很多，让No按钮稍微变小一点（但保留可读性）
                 if (noClickAttempts >= 6) {
                     const scale = Math.max(0.75, 1 - (noClickAttempts - 6) * 0.04);
                     btnNo.style.transform = `scale(${scale})`;
@@ -649,14 +501,51 @@
                 }
             }
 
-            // ===== No按钮事件：mouseenter（桌面端鼠标靠近就逃） =====
             btnNo.addEventListener('mouseenter', function(e) {
                 if (isResultShown) return;
                 e.preventDefault();
                 moveNoButton();
             });
 
-            // ===== No按钮事件：touchstart（移动端手指触碰就逃） =====
             btnNo.addEventListener('touchstart', function(e) {
                 if (isResultShown) return;
-         
+                e.preventDefault();
+                moveNoButton();
+            });
+
+            btnYes.addEventListener('click', function() {
+                if (isResultShown) return;
+                isResultShown = true;
+
+                for(let i=0;i<18;i++){
+                    createBurstHeart();
+                }
+
+                modal.innerHTML = `
+                    <div class="result-content">
+                        <div class="result-emoji">💖</div>
+                        <div class="result-text">投票成功！</div>
+                        <div class="result-subtext">感谢支持囚徒宁芙奖✨</div>
+                        <button class="btn-close-result" id="btnClose">关闭</button>
+                    </div>
+                `;
+
+                document.getElementById('btnClose').addEventListener('click',()=>{
+                    overlay.style.display = 'none';
+                });
+            });
+
+            function createBurstHeart(){
+                const heart = document.createElement('span');
+                heart.className = 'burst-heart';
+                const emojis = ['💕','💖','💗','💝','💘','🩷'];
+                heart.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+                heart.style.left = 50 + (Math.random()-0.5)*30 + '%';
+                heart.style.top = 40 + (Math.random()-0.5)*20 + '%';
+                heartsBurst.appendChild(heart);
+                setTimeout(()=>heart.remove(),1800);
+            }
+        })();
+    </script>
+</body>
+</html>
