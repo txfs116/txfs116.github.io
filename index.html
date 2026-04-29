@@ -375,7 +375,7 @@
             font-weight: 800;
             color: #ff4081;
             letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(255, 64, 129, 0.2);
+            text-shadow: 0 2px 8px rgba(255,64,129,0.2);
         }
 
         .result-subtext {
@@ -394,14 +394,14 @@
             cursor: pointer;
             background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%);
             color: #fff;
-            box-shadow: 0 4px 16px rgba(255, 64, 129, 0.35);
+            box-shadow: 0 4px 16px rgba(255,64,129,0.35);
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             letter-spacing: 0.5px;
         }
 
         .btn-close-result:hover {
             transform: scale(1.07);
-            box-shadow: 0 8px 24px rgba(255, 64, 129, 0.5);
+            box-shadow: 0 8px 24px rgba(255,64,129,0.5);
         }
         .btn-close-result:active {
             transform: scale(0.93);
@@ -559,7 +559,6 @@
 
             // ===== 检查两个矩形是否重叠 =====
             function isOverlapping(ax, ay, aw, ah, bx, by, bw, bh) {
-                // 添加一些margin避免太近
                 const margin = 16;
                 return !(
                     ax + aw + margin < bx ||
@@ -588,7 +587,6 @@
                     newLeft = bounds.minLeft + Math.random() * (bounds.maxLeft - bounds.minLeft);
                     newTop = bounds.minTop + Math.random() * (bounds.maxTop - bounds.minTop);
 
-                    // 检查是否与Yes按钮重叠
                     if (!isOverlapping(
                             newLeft, newTop, bw, bh,
                             bounds.yesLeft, bounds.yesTop,
@@ -601,9 +599,7 @@
                     attempts++;
                 }
 
-                // 如果实在找不到不重叠的位置，就随机放一个（远离Yes）
                 if (!validPosition) {
-                    // 放到Yes按钮对面
                     if (bounds.yesLeft > bounds.areaWidth / 2) {
                         newLeft = bounds.minLeft + Math.random() * 40;
                     } else {
@@ -614,23 +610,18 @@
                     newTop = Math.max(bounds.minTop, Math.min(bounds.maxTop, newTop));
                 }
 
-                // 更新No按钮文字
                 noClickAttempts++;
                 const textIndex = Math.min(noClickAttempts, noTexts.length - 1);
                 btnNo.textContent = noTexts[textIndex];
 
-                // 移动按钮
                 btnNo.style.left = newLeft + 'px';
                 btnNo.style.top = newTop + 'px';
-                // 清除bottom，使用top定位
                 btnNo.style.bottom = 'auto';
 
-                // 添加逃跑动画
                 btnNo.classList.remove('fleeing');
                 void btnNo.offsetWidth;
                 btnNo.classList.add('fleeing');
 
-                // 弹窗微微晃动
                 if (noClickAttempts % 3 === 1 && noClickAttempts > 2) {
                     modal.classList.remove('shake');
                     void modal.offsetWidth;
@@ -638,31 +629,40 @@
                     setTimeout(() => modal.classList.remove('shake'), 450);
                 }
 
-                // 短暂锁定防止连续触发
-                setTimeout(() => {
-                    noBtnMoving = false;
-                }, 100);
-
-                // 如果尝试次数很多，让No按钮变小一点
                 if (noClickAttempts >= 8) {
                     const scale = Math.max(0.7, 1 - (noClickAttempts - 8) * 0.04);
                     btnNo.style.transform = `scale(${scale})`;
                     btnNo.style.opacity = Math.max(0.5, 1 - (noClickAttempts - 8) * 0.06);
                 }
+
+                setTimeout(() => {
+                    noBtnMoving = false;
+                }, 100);
             }
 
-            // ===== No按钮事件：mouseenter（桌面端鼠标靠近就逃） =====
+            // ===== No按钮事件 =====
             btnNo.addEventListener('mouseenter', function(e) {
                 if (isResultShown) return;
                 e.preventDefault();
                 moveNoButton();
             });
 
-            // ===== No按钮事件：touchstart（移动端手指触碰就逃） =====
             btnNo.addEventListener('touchstart', function(e) {
                 if (isResultShown) return;
                 e.preventDefault();
                 moveNoButton();
             }, { passive: false });
 
-         
+            btnNo.addEventListener('click', function(e) {
+                if (isResultShown) return;
+                e.preventDefault();
+                e.stopPropagation();
+                moveNoButton();
+            });
+
+            // ===== Yes按钮点击弹出电电喜欢你 =====
+            btnYes.addEventListener('click', function(e) {
+                if (isResultShown) return;
+                e.preventDefault();
+                e.stopPropagation();
+              
