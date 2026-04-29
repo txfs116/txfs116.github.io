@@ -99,8 +99,8 @@
         /* 弹窗 */
         .modal {
             position: relative;
-            width: min(440px, 92vw);
-            min-height: 300px;
+            width: min(460px, 92vw);
+            min-height: 320px;
             background: #ffffff;
             border-radius: 24px;
             padding: 30px 28px 28px;
@@ -204,26 +204,27 @@
         .btn-area {
             position: relative;
             width: 100%;
-            height: 160px;
+            height: 180px;
             margin-top: 10px;
         }
 
         /* 按钮通用样式 */
         .btn {
             position: absolute;
-            padding: 13px 32px;
-            font-size: 1.1rem;
+            padding: 13px 28px;
+            font-size: 1.05rem;
             font-weight: 700;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             letter-spacing: 0.8px;
-            transition: transform 0.12s ease, box-shadow 0.12s ease;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s;
             outline: none;
             z-index: 10;
             white-space: nowrap;
             min-width: 90px;
             text-align: center;
+            word-break: keep-all;
         }
 
         .btn:active {
@@ -273,6 +274,8 @@
             z-index: 15;
             border: 2px solid #e0e0e0;
             cursor: pointer;
+            min-width: 120px;
+            /* 为中文预留宽度 */;
         }
 
         .btn-no:hover {
@@ -375,7 +378,7 @@
             font-weight: 800;
             color: #ff4081;
             letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(255,64,129,0.2);
+            text-shadow: 0 2px 8px rgba(255, 64, 129, 0.2);
         }
 
         .result-subtext {
@@ -394,14 +397,14 @@
             cursor: pointer;
             background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%);
             color: #fff;
-            box-shadow: 0 4px 16px rgba(255,64,129,0.35);
+            box-shadow: 0 4px 16px rgba(255, 64, 129, 0.35);
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             letter-spacing: 0.5px;
         }
 
         .btn-close-result:hover {
             transform: scale(1.07);
-            box-shadow: 0 8px 24px rgba(255,64,129,0.5);
+            box-shadow: 0 8px 24px rgba(255, 64, 129, 0.5);
         }
         .btn-close-result:active {
             transform: scale(0.93);
@@ -412,7 +415,7 @@
             .modal {
                 padding: 24px 16px 20px;
                 border-radius: 20px;
-                min-height: 270px;
+                min-height: 290px;
             }
             .modal-question {
                 font-size: 1.05rem;
@@ -421,20 +424,21 @@
                 font-size: 40px;
             }
             .btn {
-                padding: 11px 24px;
-                font-size: 0.95rem;
-                min-width: 72px;
+                padding: 11px 20px;
+                font-size: 0.9rem;
+                min-width: 80px;
             }
             .btn-area {
-                height: 140px;
+                height: 160px;
             }
             .btn-yes {
                 bottom: 16px;
                 right: 24px;
             }
             .btn-no {
-                bottom: 16px;
+                bottom: auto;
                 left: 24px;
+                min-width: 100px;
             }
             .result-text {
                 font-size: 1.3rem;
@@ -464,7 +468,7 @@
             <div class="btn-area" id="btnArea">
                 <!-- Yes按钮 - 固定 -->
                 <button class="btn btn-yes" id="btnYes">✅ Yes</button>
-                <!-- No按钮 - 会逃跑 -->
+                <!-- No按钮 - 会逃跑且文字会变 -->
                 <button class="btn btn-no" id="btnNo">❌ No</button>
             </div>
         </div>
@@ -489,18 +493,12 @@
             let isResultShown = false;
             let noBtnMoving = false;
 
-            // ===== No按钮的逃跑文字序列 =====
+            // ===== ⚡ 修改后的 No 按钮文字序列 =====
             const noTexts = [
-                '❌ No',
-                '❌ No 😅',
-                '❌ 别点我 🤭',
-                '❌ 抓不到~ 😝',
-                '❌ 放弃吧 💀',
-                '❌ 真的抓不到 😈',
-                '❌ 别挣扎了 🏃💨',
-                '❌ 认命吧~ ✨',
-                '❌ 嘿嘿 🤪',
-                '❌ 点Yes吧 🙈',
+                '❌ No',                  // 0: 初始状态
+                '你不想投我吗？😢',       // 1: 点第1次后
+                '求求你了，投我吧🥺',     // 2: 点第2次后
+                '再不投腰不想要了😭'      // 3: 点第3次后（之后保持不变）
             ];
 
             // ===== 初始化背景浮动爱心 =====
@@ -559,7 +557,8 @@
 
             // ===== 检查两个矩形是否重叠 =====
             function isOverlapping(ax, ay, aw, ah, bx, by, bw, bh) {
-                const margin = 16;
+                // 添加一些margin避免太近
+                const margin = 20;
                 return !(
                     ax + aw + margin < bx ||
                     ax > bx + bw + margin ||
@@ -587,6 +586,7 @@
                     newLeft = bounds.minLeft + Math.random() * (bounds.maxLeft - bounds.minLeft);
                     newTop = bounds.minTop + Math.random() * (bounds.maxTop - bounds.minTop);
 
+                    // 检查是否与Yes按钮重叠
                     if (!isOverlapping(
                             newLeft, newTop, bw, bh,
                             bounds.yesLeft, bounds.yesTop,
@@ -599,7 +599,9 @@
                     attempts++;
                 }
 
+                // 如果实在找不到不重叠的位置，就随机放一个（远离Yes）
                 if (!validPosition) {
+                    // 放到Yes按钮对面
                     if (bounds.yesLeft > bounds.areaWidth / 2) {
                         newLeft = bounds.minLeft + Math.random() * 40;
                     } else {
@@ -610,59 +612,51 @@
                     newTop = Math.max(bounds.minTop, Math.min(bounds.maxTop, newTop));
                 }
 
+                // ⚡ 更新No按钮文字：使用修改后的序列
                 noClickAttempts++;
                 const textIndex = Math.min(noClickAttempts, noTexts.length - 1);
                 btnNo.textContent = noTexts[textIndex];
 
+                // 移动按钮
                 btnNo.style.left = newLeft + 'px';
                 btnNo.style.top = newTop + 'px';
+                // 清除bottom，使用top定位
                 btnNo.style.bottom = 'auto';
 
+                // 添加逃跑动画
                 btnNo.classList.remove('fleeing');
                 void btnNo.offsetWidth;
                 btnNo.classList.add('fleeing');
 
-                if (noClickAttempts % 3 === 1 && noClickAttempts > 2) {
+                // 弹窗微微晃动（稍微频繁一点，增强反馈）
+                if (noClickAttempts % 2 === 1 && noClickAttempts > 1) {
                     modal.classList.remove('shake');
                     void modal.offsetWidth;
                     modal.classList.add('shake');
                     setTimeout(() => modal.classList.remove('shake'), 450);
                 }
 
-                if (noClickAttempts >= 8) {
-                    const scale = Math.max(0.7, 1 - (noClickAttempts - 8) * 0.04);
-                    btnNo.style.transform = `scale(${scale})`;
-                    btnNo.style.opacity = Math.max(0.5, 1 - (noClickAttempts - 8) * 0.06);
-                }
-
+                // 短暂锁定防止连续触发
                 setTimeout(() => {
                     noBtnMoving = false;
                 }, 100);
+
+                // 如果尝试次数很多，让No按钮稍微变小一点（但保留可读性）
+                if (noClickAttempts >= 6) {
+                    const scale = Math.max(0.75, 1 - (noClickAttempts - 6) * 0.04);
+                    btnNo.style.transform = `scale(${scale})`;
+                    btnNo.style.opacity = Math.max(0.55, 1 - (noClickAttempts - 6) * 0.06);
+                }
             }
 
-            // ===== No按钮事件 =====
+            // ===== No按钮事件：mouseenter（桌面端鼠标靠近就逃） =====
             btnNo.addEventListener('mouseenter', function(e) {
                 if (isResultShown) return;
                 e.preventDefault();
                 moveNoButton();
             });
 
+            // ===== No按钮事件：touchstart（移动端手指触碰就逃） =====
             btnNo.addEventListener('touchstart', function(e) {
                 if (isResultShown) return;
-                e.preventDefault();
-                moveNoButton();
-            }, { passive: false });
-
-            btnNo.addEventListener('click', function(e) {
-                if (isResultShown) return;
-                e.preventDefault();
-                e.stopPropagation();
-                moveNoButton();
-            });
-
-            // ===== Yes按钮点击弹出电电喜欢你 =====
-            btnYes.addEventListener('click', function(e) {
-                if (isResultShown) return;
-                e.preventDefault();
-                e.stopPropagation();
-              
+         
